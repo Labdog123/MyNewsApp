@@ -3,11 +3,37 @@
 <html>
       <head>
             <title>Register</title>
+            <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.no-icons.min.css" rel="stylesheet">
+            <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
             <link rel="stylesheet" href="{% static 'css/register.css' %}" type="text/css">
       </head>
 
       <body>
-        {% include 'news/navbar_trial.html' %}
+              <nav>
+                  <div class="dic">
+                        <a href="{% url 'news_list' %}">
+                              <span ><img class="logo-image" src="{% static 'images\abstract-s-logo-design_8586-76.jpg'%}"></span><p class="logo">SpeedNews</p>
+                              </a>
+                        <div class="hamburger">
+                              <div class="hamburger__item1"></div>
+                              <div class="hamburger__item2"></div>
+                              <div class="hamburger__item3"></div>
+                        </div>
+                  </div>
+                  <ul class="nav__links">
+                        {% if request.user.is_authenticated %}
+                        <li>
+                              <a href="{% url 'news_list' %}"><i class="icon-home icon-1x"></i>Home</a>
+                        </li>
+                        {% else %}
+                        <li>
+                              <a href="{% url 'news_list' %}"><i class="icon-home icon-1x"></i>Home</a>
+                        </li>
+                        <li><a href="{% url 'login' %}"><i class="icon-signin icon-1x"></i>Login</a></li>
+                        <li><a href="{% url 'register' %}"><i class="icon-user icon-1x"></i>Register</a></li>
+                        {% endif %}
+                  </ul>
+            </nav>
             <form action="" method="POST">
                   {% csrf_token %}
                   <h2>Please Sign Up here</h2><br><hr><br>
@@ -37,6 +63,6 @@
                   <button type="submit" class="signup-button">Register</button><br><br>
                   <p class="reg-b-text">Already have an account? <a href="{% url 'login' %}">Login here</a></p><br><hr>
             </form>
-      <script src="{% static 'js/register.js' %}"></script>
+      <script src="{% static 'js/nav.js'%}" type="text/javascript"></script>
       </body>
 </html>
