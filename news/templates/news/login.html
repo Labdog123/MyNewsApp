@@ -3,36 +3,10 @@
 <html>
       <head>
             <title>Login</title>
-            <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.no-icons.min.css" rel="stylesheet">
-            <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
             <link rel="stylesheet" href="{% static 'css/login.css' %}" type="text/css">
       </head>
       <body>
-            <nav>
-                  <div class="dic">
-                        <a href="{% url 'news_list' %}">
-                              <span ><img class="logo-image" src="{% static 'images\abstract-s-logo-design_8586-76.jpg'%}"></span><p class="logo">SpeedNews</p>
-                              </a>
-                        <div class="hamburger">
-                              <div class="hamburger__item1"></div>
-                              <div class="hamburger__item2"></div>
-                              <div class="hamburger__item3"></div>
-                        </div>
-                  </div>
-                  <ul class="nav__links">
-                        {% if request.user.is_authenticated %}
-                        <li>
-                              <a href="{% url 'news_list' %}"><i class="icon-home icon-1x"></i>Home</a>
-                        </li>
-                        {% else %}
-                        <li>
-                              <a href="{% url 'news_list' %}"><i class="icon-home icon-1x"></i>Home</a>
-                        </li>
-                        <li><a href="{% url 'login' %}"><i class="icon-signin icon-1x"></i>Login</a></li>
-                        <li><a href="{% url 'register' %}"><i class="icon-user icon-1x"></i>Register</a></li>
-                        {% endif %}
-                  </ul>
-            </nav>
+      {% include 'news/navbar_trial.html' %}
            <div class="form-group">
                   <form action="" method="POST">
                         {% csrf_token %}
@@ -44,12 +18,11 @@
                         <p>
                               <label>Password</label><br>
                               {{form.password}}
-                        </p><span><a href="{% url 'password_reset' %}">Forgot password ?</a></span><br><br><br>
+                        </p><br><br>
                         <button type="submit" class="login-button">Log in</button><br><br>
                         <p>Don't have an account? <a href="{% url 'register' %}">Register here</a></p>
 
             </form>
            </div>
-      <script src="{% static 'js/nav.js'%}" type="text/javascript"></script>
       </body>
 </html>
